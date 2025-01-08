@@ -3,13 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>我的第一个静态网页222</title>
+        <title>cocos demo</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
                 background-color: #f4f4f4;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
             }
             header {
                 background-color: #333;
@@ -18,36 +21,57 @@
                 text-align: center;
             }
             main {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 padding: 2rem;
+                text-align: center;
             }
             footer {
                 background-color: #333;
                 color: white;
                 text-align: center;
                 padding: 1rem 0;
-                position: fixed;
-                bottom: 0;
                 width: 100%;
+            }
+            .demo-links {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                width: 240px; /* 固定宽度 */
+            }
+            .demo-links a {
+                display: block;
+                padding: 0.5rem 1rem;
+                background-color: #007bff;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+                text-align: center; /* 文字居中 */
+            }
+            .demo-links a:hover {
+                background-color: #0056b3;
             }
         </style>
     </head>
     <body>
         <header>
-            <h1>欢迎来到我的网页</h1>
+            <h1>CocosCreator Demo</h1>
         </header>
         <main>
-            <h2>关于我</h2>
-            <p>这是一个简单的静态 HTML 网页示例。您可以根据需要修改和扩展它。</p>
-
-            <h2>我的兴趣</h2>
-            <ul>
-                <li>编程</li>
-                <li>阅读</li>
-                <li>旅行</li>
-            </ul>
-            <h2>更多内容</h2>
-            <p><a href="./redDotSys/index.html">点击这里进入第二个页面</a></p>
+            <h2>项目案例</h2>
+            <div class="demo-links">
+                <a href="./redDotSys/index.html">0.1 红点系统</a>
+                <a href="./redDotSys/index.html">0.2 待开发...</a>
+                <a href="./redDotSys/index.html">0.3 待开发...</a>
+                <a href="./redDotSys/index.html">0.4 待开发...</a>
+                <a href="./redDotSys/index.html">0.5 待开发...</a>
+                <a href="./redDotSys/index.html">0.6 待开发...</a>
+            </div>
         </main>
-        <footer>&copy; 2023 我的名字. 保留所有权利。</footer>
+        <footer>&copy; 2023 lxff. 保留所有权利。</footer>
     </body>
 </html>
