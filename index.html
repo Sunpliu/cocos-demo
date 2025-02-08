@@ -3,75 +3,167 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>cocos demo</title>
+        <!-- 引入 favicon.ico -->
+        <link rel="icon" href="./res/favicon.ico" />
+        <!-- 标题 -->
+        <title>北方有兮</title>
+        <!-- 引入 layui.css -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui@2.9.21/dist/css/layui.min.css" />
+
         <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f4f4f4;
-                display: flex;
-                flex-direction: column;
+            .centered-container {
                 min-height: 100vh;
-            }
-            header {
-                background-color: #333;
-                color: white;
-                padding: 1rem 0;
-                text-align: center;
-            }
-            main {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 2rem;
-                text-align: center;
-            }
-            footer {
-                background-color: #333;
-                color: white;
-                text-align: center;
-                padding: 1rem 0;
-                width: 100%;
-            }
-            .demo-links {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                width: 240px; /* 固定宽度 */
-            }
-            .demo-links a {
-                display: block;
-                padding: 0.5rem 1rem;
-                background-color: #007bff;
-                color: white;
-                text-decoration: none;
-                border-radius: 5px;
-                transition: background-color 0.3s;
-                text-align: center; /* 文字居中 */
-            }
-            .demo-links a:hover {
-                background-color: #0056b3;
+                padding-top: 20px;
+                padding-left: 15%;
+                padding-right: 15%;
+                box-sizing: border-box;
             }
         </style>
     </head>
-    <body>
-        <header>
-            <h1>CocosCreator Demo</h1>
-        </header>
-        <main>
-            <h2>项目案例</h2>
-            <div class="demo-links">
-                <a href="./redDotSys/index.html">0.1 红点系统</a>
-                <a href="./redDotSys/index.html">0.2 待开发...</a>
-                <a href="./redDotSys/index.html">0.3 待开发...</a>
-                <a href="./redDotSys/index.html">0.4 待开发...</a>
-                <a href="./redDotSys/index.html">0.5 待开发...</a>
-                <a href="./redDotSys/index.html">0.6 待开发...</a>
+    <body class="layui-bg-gray">
+        <!-- 引入 layui.js -->
+        <script src="https://cdn.jsdelivr.net/npm/layui@2.9.21/dist/layui.min.js"></script>
+
+        <div class="centered-container layui-bg-gray">
+            <div class="layui-panel layui-bg-orange">
+                <div style="padding: 32px">北方有兮</div>
             </div>
-        </main>
-        <footer>&copy; 2023 lxff. 保留所有权利。</footer>
+
+            <br />
+            <br />
+
+            <div class="layui-bg-gray">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md2">
+                        <div class="layui-card">
+                            <div class="layui-card-header">CocosCreator Demo</div>
+                            <div class="layui-card-body">
+                                <a href="./red-sys/index.html" target="_blank" class="layui-btn layui-bg-blue">红点系统</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md2">
+                        <div class="layui-card">
+                            <div class="layui-card-header">JS Running</div>
+                            <div class="layui-card-body">
+                                <a href="https://ziuchen.github.io/JSRunner/#/runner" target="_blank" class="layui-btn layui-bg-orange">JS Running</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md2">
+                        <div class="layui-card">
+                            <div class="layui-card-header">CocosCreator Demo</div>
+                            <div class="layui-card-body">
+                                <a href="./red-sys/index.html" target="_blank" class="layui-btn layui-bg-blue">红点系统</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md2">
+                        <div class="layui-card">
+                            <div class="layui-card-header">MD记事本</div>
+                            <div class="layui-card-body">
+                                <a href="https://ziuchen.github.io/SuperMarkdown/#/editor" target="_blank" class="layui-btn">MD记事本</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md2">
+                        <div class="layui-card">
+                            <div class="layui-card-header">Chat GPT</div>
+                            <div class="layui-card-body">
+                                <a href="https://chatgpt.com/c/67a6dc9e-c260-8010-8ebe-5f04e3b107b8" target="_blank" class="layui-btn">Chat GPT</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md2">
+                        <div class="layui-card">
+                            <div class="layui-card-header">Layui</div>
+                            <div class="layui-card-body">
+                                <a href="https://layui.dev/docs/2/" target="_blank" class="layui-btn">Layui</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <br />
+
+            <fieldset class="layui-elem-field">
+                <legend>时间线</legend>
+                <div class="layui-timeline" style="padding: 32px">
+                    <div class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis layui-icon-face-smile"></i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">2023年，Layui 情怀版本 2.8.0 发布，新官网上线，且文档全部重写并开源。</div>
+                        </div>
+                    </div>
+                    <div class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis layui-icon-face-cry"></i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">2021年，Layui 原官网下线，此后 Layui 进入两年的低谷期。</div>
+                        </div>
+                    </div>
+                    <div class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis layui-icon-fire"></i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">2017年，Layui 里程碑版本 2.0.0 发布，此后 Layui 进入三年的高光期。</div>
+                        </div>
+                    </div>
+                    <div class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis layui-icon-circle"></i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">2016年，Layui 首个版本发布</div>
+                        </div>
+                    </div>
+                    <div class="layui-timeline-item">
+                        <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-timeline-axis"></i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">最初，Layui 在爱与期许中孵化。</div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <br />
+
+            <div class="layui-collapse" lay-accordion>
+                <div class="layui-colla-item">
+                    <div class="layui-colla-title">layui 主要面向哪些用户群体？</div>
+                    <div class="layui-colla-content layui-show">
+                        Layui 作为一个前端界面组件库，但面向的却主要是后端开发者。
+                        <br />即无需涉足各类构建工具，只需面向浏览器本身，便可将页面所需呈现的元素与交互信手拈来。
+                    </div>
+                </div>
+                <div class="layui-colla-item">
+                    <div class="layui-colla-title">为什么我的眼里常含泪水？</div>
+                    <div class="layui-colla-content">
+                        <p>因为我对这片土地爱的深沉。</p>
+                    </div>
+                </div>
+                <div class="layui-colla-item">
+                    <div class="layui-colla-title">Why are my eyes always brimming with tears?</div>
+                    <div class="layui-colla-content">
+                        <p>Because I love this land so deeply…</p>
+                    </div>
+                </div>
+                <div class="layui-colla-item">
+                    <div class="layui-colla-title">一个折叠面板的标题？</div>
+                    <div class="layui-colla-content">
+                        <p>一个折叠面板的内容。</p>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <blockquote class="layui-elem-quote layui-bg-red">引用内容，边框风格</blockquote>
+        </div>
+
+        <script></script>
     </body>
 </html>

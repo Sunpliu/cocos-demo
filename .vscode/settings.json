@@ -1,0 +1,39 @@
+{
+    /////////////////////////////////// Git end ///////////////////////////////////
+    // 在使用搜索功能时，将这些文件夹/文件排除在外
+    "search.exclude": {
+        "**/build": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/target": true,
+        "**/logs": true,
+        "**/temp": true,
+        "**/library": true,
+        "**/preview-template": true,
+        "**/res": false
+    },
+    // 这些文件将不会显示在工作空间中
+    "files.exclude": {
+        "**/.git": true,
+        "**/res": false,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.fire": true,
+        "**/*.js": {
+            "when": "$(basename).ts" //ts编译后生成的js文件将不会显示在工作空中
+        },
+        "**/profiles": true,
+        "**/preview-template": true,
+        "**/node_modules": true,
+        "**/temp": true,
+        "**/library": true,
+        "**/template": true,
+        "**/build": false,
+        "**/local": true
+    },
+    "cSpell.words": [
+        "layui"
+    ],
+}
