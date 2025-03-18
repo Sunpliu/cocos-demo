@@ -26,7 +26,7 @@
 
         <div class="centered-container layui-bg-gray">
             <div class="layui-panel layui-bg-orange">
-                <div style="padding: 32px">Lobby-发布流程辅助工具</div>
+                <div style="padding: 32px">Lobby 发布流程 工单生成工具</div>
             </div>
 
             <hr class="ws-space-16" />
@@ -57,7 +57,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">选择环境</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="evn" lay-verify="required" value="prev" autocomplete="off" class="layui-input" disabled />
+                            <input type="text" name="evn" lay-verify="required" value="prod" autocomplete="off" class="layui-input" disabled />
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -92,19 +92,19 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">Main</label>
                         <div class="layui-input-block">
-                            <input type="text" name="bundle-main-version" placeholder="1.1.1" autocomplete="off" class="layui-input" />
+                            <input type="text" name="bundle-main-version" placeholder="输入版本号" autocomplete="off" class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">Common</label>
                         <div class="layui-input-block">
-                            <input type="text" name="bundle-common-version" placeholder="1.1.1" autocomplete="off" class="layui-input" />
+                            <input type="text" name="bundle-common-version" placeholder="输入版本号" autocomplete="off" class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">Hall</label>
                         <div class="layui-input-block">
-                            <input type="text" name="bundle-hall-version" placeholder="1.1.1" autocomplete="off" class="layui-input" />
+                            <input type="text" name="bundle-hall-version" placeholder="输入版本号" autocomplete="off" class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -120,14 +120,14 @@
                 </div>
 
                 <div class="layui-form-item">
-                    <button class="layui-btn" lay-submit lay-filter="demo2">确认</button>
+                    <button class="layui-btn" lay-submit lay-filter="demo2">生成</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </form>
 
             <!-- 输出内容 -->
 
-            <div class="layui-bg-gray">
+            <div class="layui-bg-gray" id="copy_area">
                 <div class="layui-row layui-col-space15">
                     <div class="layui-col-md3">
                         <div class="layui-card">
@@ -191,6 +191,12 @@
                 return Object.keys(data).filter(key => data[key] === "1");
             }
 
+            function isValidVersion(version) {
+                return /^[0-9.]+$/.test(version);
+            }
+
+            document.getElementById("copy_area").style.display = "none";
+
             layui.use(['layer', 'form', 'laydate', 'util'], function () {
                 var form = layui.form;
                 var layer = layui.layer;
@@ -243,9 +249,16 @@
                     var skins = getKeysWithValueOne(field);
 
                     if(field['bundle-main-version']==='' && field['bundle-common-version']==='' && field['bundle-hall-version'] === ''){
-                        layer.msg('请填写版本号！')
+                        layer.msg('请填写至少一个版本号！！！')
                         return false;
                     }
+
+                    if(skins.length === 0){
+                        layer.msg('请选择皮肤！！！')
+                        return false;
+                    }
+
+                    document.getElementById("copy_area").style.display ="block";
 
                     // main 版本号
                     let version_main = ''
