@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 引入 favicon.ico -->
+        <link rel="icon" href="./res/favicon.ico" />
+        <!-- 标题 -->
+        <title>Lobby-发布流程辅助工具</title>
+        <!-- 引入 layui.css -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui@2.9.21/dist/css/layui.min.css" />
+
+        <style>
+            .centered-container {
+                min-height: 100vh;
+                padding-top: 20px;
+                padding-left: 15%;
+                padding-right: 15%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body class="layui-bg-gray">
+        <!-- 引入 layui.js -->
+        <script src="https://cdn.jsdelivr.net/npm/layui@2.9.21/dist/layui.min.js"></script>
+
+        <div class="centered-container layui-bg-gray">
+            <div class="layui-panel layui-bg-orange">
+                <div style="padding: 32px">Lobby-发布流程辅助工具</div>
+            </div>
+
+            <hr class="ws-space-16" />
+            <hr class="ws-space-16" />
+
+            <!-- 给容器追加 class="layui-form-pane"，即可显示为方框风格 -->
+            <form class="layui-form layui-form-pane" action="">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">选择区域</label>
+                        <div class="layui-input-inline">
+                            <select name="area" lay-filter="aihao">
+                                <option value="id" selected>id</option>
+                                <option value="id2">id2</option>
+                                <option value="id3">id3</option>
+                                <option value="id4">id4</option>
+                                <option value="id5">id5</option>
+                                <option value="id6">id6</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">选择环境</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="evn" lay-verify="required" value="prev" autocomplete="off" class="layui-input" disabled />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">选择日期</label>
+                        <div class="layui-input-inline layui-input-wrap">
+                            <div class="layui-input-prefix">
+                                <i class="layui-icon layui-icon-date"></i>
+                            </div>
+                            <input type="text" name="date" id="date" lay-verify="date|required" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择皮肤</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" value="1"name="bg" title="bg" checked />
+                        <input type="checkbox" value="1" name="ct" title="ct" checked />
+                        <input type="checkbox" value="1" name="ct2" title="ct2" checked />
+                        <input type="checkbox" value="1" name="ct3" title="ct3" checked />
+                        <input type="checkbox" value="1" name="ct4" title="ct4" checked />
+                        <input type="checkbox" value="1" name="cm1" title="cm1" checked />
+                        <input type="checkbox" value="1" name="cm2" title="cm2" checked />
+                        <input type="checkbox" value="1" name="cm3" title="cm3" checked />
+                        <input type="checkbox" value="1" name="cm4" title="cm4" checked />
+                        <input type="checkbox" value="1" name="cm5" title="cm5" checked />
+                        <input type="checkbox" value="1" name="cm6" title="cm6" checked />
+                    </div> 
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">Main</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="bundle-main-version" placeholder="1.1.1" autocomplete="off" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">Common</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="bundle-common-version" placeholder="1.1.1" autocomplete="off" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">Hall</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="bundle-hall-version" placeholder="1.1.1" autocomplete="off" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-form-mid layui-text-em">不填写，则不生产！！！</div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">更新内容</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入内容" name="desc" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <button class="layui-btn" lay-submit lay-filter="demo2">确认</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </form>
+
+            <!-- 输出内容 -->
+
+            <div class="layui-bg-gray">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md3">
+                        <div class="layui-card">
+                            <div class="layui-card-header">main 版本号</div>
+                            <div class="layui-card-body">
+                                <textarea placeholder="请输入内容" id="text-version-main" class="layui-textarea" style="height: 120px"></textarea>
+                           
+                                <div class="layui-btn-container" style="margin-top: 10px;"> 
+                                    <button type="button" class="layui-btn layui-btn-fluid" lay-on="copy-version-main">复制</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md3">
+                        <div class="layui-card">
+                            <div class="layui-card-header">others 版本号</div>
+                            <div class="layui-card-body">
+                                <textarea placeholder="请输入内容" id="text-version-others" class="layui-textarea" style="height: 120px"></textarea>
+                           
+                                <div class="layui-btn-container" style="margin-top: 10px;"> 
+                                    <button type="button" class="layui-btn layui-btn-fluid" lay-on="copy-version-others">复制</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md3">
+                        <div class="layui-card">
+                            <div class="layui-card-header">newdir 工单</div>
+                            <div class="layui-card-body">
+                                <textarea placeholder="请输入内容" id="text-newdir" class="layui-textarea" style="height: 120px"></textarea>
+
+                                <div class="layui-btn-container" style="margin-top: 10px;"> 
+                                    <button type="button" class="layui-btn layui-btn-fluid" lay-on="copy-newdir">复制</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md3">
+                        <div class="layui-card">
+                            <div class="layui-card-header">cover 工单</div>
+                            <div class="layui-card-body">
+                                <textarea placeholder="请输入内容" id="text-cover"  class="layui-textarea" style="height: 120px"></textarea>
+
+                                <div class="layui-btn-container" style="margin-top: 10px;"> 
+                                    <button type="button" class="layui-btn layui-btn-fluid" lay-on="copy-cover">复制</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+ 
+        </div>
+
+        <!-- 脚本区域 -->
+        <script>
+            function getKeysWithValueOne(data) {
+                return Object.keys(data).filter(key => data[key] === "1");
+            }
+
+            layui.use(['layer', 'form', 'laydate', 'util'], function () {
+                var form = layui.form;
+                var layer = layui.layer;
+                var laydate = layui.laydate;
+                var util = layui.util;
+
+                // 日期
+                laydate.render({
+                    elem: '#date',
+                });
+
+                util.on('lay-on', {
+                    "copy-version-main": function(){
+                        const textarea = document.getElementById("text-version-main") 
+                        navigator.clipboard.writeText(textarea.value)
+                            .then(() => layer.msg('复制成功！'))
+                            .catch(err => layer.msg("复制失败: ", err));
+
+                    },
+
+                    "copy-version-others": function(){
+                        const textarea = document.getElementById("text-version-others") 
+                        navigator.clipboard.writeText(textarea.value)
+                            .then(() => layer.msg('复制成功！'))
+                            .catch(err => layer.msg("复制失败: ", err));
+
+                    },
+
+                    "copy-newdir": function(){
+                        const textarea = document.getElementById("text-newdir") 
+                        navigator.clipboard.writeText(textarea.value)
+                            .then(() => layer.msg('复制成功！'))
+                            .catch(err => layer.msg("复制失败: ", err));
+
+                    },
+
+                    "copy-cover": function(){
+                        const textarea = document.getElementById("text-cover") 
+                        navigator.clipboard.writeText(textarea.value)
+                            .then(() => layer.msg('复制成功！'))
+                            .catch(err => layer.msg("复制失败: ", err));
+
+                    },
+                })
+
+                // 提交事件
+                form.on('submit(demo2)', function (data) {
+                    var field = data.field; // 获取表单字段值
+          
+                    var skins = getKeysWithValueOne(field);
+
+                    if(field['bundle-main-version']==='' && field['bundle-common-version']==='' && field['bundle-hall-version'] === ''){
+                        layer.msg('请填写版本号！')
+                        return false;
+                    }
+
+                    // main 版本号
+                    let version_main = ''
+                    if(field['bundle-main-version']){
+                        for(let i = 0; i < skins.length; i++){
+                            if(i == skins.length - 1){
+                                version_main += `main_${skins[i]}_${field['bundle-main-version']}.zip`
+                                break;
+                            }
+                            version_main += `main_${skins[i]}_${field['bundle-main-version']}.zip,`
+                        }
+                    }
+                    document.getElementById("text-version-main").value = version_main;
+
+                    // others 版本号
+                    let version_others = ''
+                    if(field['bundle-common-version']){
+                        for(let i = 0; i < skins.length; i++){
+                            if(i == skins.length - 1){
+                                version_others += `common_${skins[i]}_${field['bundle-common-version']}.zip`
+                                break;
+                            }
+                            version_others += `common_${skins[i]}_${field['bundle-common-version']}.zip,`
+                        }
+                    }
+                    if(field['bundle-hall-version']){
+                        if(version_others!==''){
+                            version_others += ','
+                        }
+                        for(let i = 0; i < skins.length; i++){
+                            if(i == skins.length - 1){
+                                version_others += `hall_${skins[i]}_${field['bundle-hall-version']}.zip`
+                                break;
+                            }
+                            version_others += `hall_${skins[i]}_${field['bundle-hall-version']}.zip,`
+                        }
+                    }
+                    document.getElementById("text-version-others").value = version_others;
+
+                    let version_main_2 = version_main.replace(/,/g, '\n')
+                    let version_others_2 = version_others.replace(/,/g, '\n')
+
+// newdir 工单
+let newdir = `【客户端大厅更新工单】
+区域：${field['area']}
+环境：${field['evn']}
+`;
+
+if(field['bundle-main-version']){
+    newdir +=`
+服务：hall_h5_main_newdir
+日期：${field['date']}
+文件：
+${version_main_2}
+`;
+}
+
+if(field['bundle-common-version'] || field['bundle-hall-version']){
+    newdir += `
+服务：hall_h5_other
+日期：${field['date']}
+文件：
+${version_others_2}
+`;
+}
+
+if(field['bundle-main-version']){
+     newdir += `
+服务：hall_native_main
+日期：${field['date']}
+文件：
+${version_main_2}
+`;
+}
+
+if(field['bundle-common-version'] || field['bundle-hall-version']){
+    newdir += `
+服务：hall_native_other
+日期：${field['date']}
+文件：
+${version_others_2}
+`;
+}
+
+if(field['desc']){
+    newdir += `
+更新内容：
+${field['desc']}
+`
+}
+newdir += `
+提更新工单 @Platt0417 @Lavy_2r8`
+                    document.getElementById("text-newdir").value = newdir;
+
+                    // cover 工单
+                    let cover = '';
+                    if(field['bundle-main-version']){
+                        cover = `【客户端大厅更新工单】 
+区域：${field['area']}
+环境：${field['evn']}
+服务：hall_h5_main_cover 
+日期：${field['date']}
+操作：覆盖+刷新cdn 
+文件：
+${version_main_2}
+
+提更新工单 @Lavy_2r8 @Platt0417`
+                    }
+
+                    document.getElementById("text-cover").value = cover;
+
+                    layer.msg('生成成功！')
+
+                    // 此处可执行 Ajax 等操作
+                    // …
+                    return false; // 阻止默认 form 跳转
+                });
+            });
+        </script>
+    </body>
+</html>
