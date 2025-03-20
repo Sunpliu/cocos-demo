@@ -25,15 +25,53 @@
         <script src="https://cdn.jsdelivr.net/npm/layui@2.9.21/dist/layui.min.js"></script>
 
         <div class="centered-container layui-bg-gray">
-            <div class="layui-panel layui-bg-orange">
-                <div style="padding: 32px">Lobby 发布流程 工单生成工具</div>
-            </div>
+            <blockquote class="layui-elem-quote">Lobby，发布流程，工单生成工具 </blockquote>
 
-            <hr class="ws-space-16" />
-            <hr class="ws-space-16" />
+            <div class="layui-bg-gray" style="margin-top: 16px;">
+                <div class="layui-row layui-col-space15">
+                  <div class="layui-col-md4">
+                    <div class="layui-card">
+                      <div class="layui-card-header">版本号规范</div>
+                      <div class="layui-card-body">
+                        1.xxxx
+                        <br>
+                        2.xxxx
+                        <br>
+                        3.xxxx
+                      </div>
+                    </div>
+                  </div>
+                  <div class="layui-col-md4">
+                    <div class="layui-card">
+                      <div class="layui-card-header">大致流程</div>
+                      <div class="layui-card-body">
+                        1.xxxx
+                        <br>
+                        2.xxxx
+                        <br>
+                        3.xxxx
+                      </div>
+                    </div>
+                  </div>
+                  <div class="layui-col-md4">
+                    <div class="layui-card">
+                      <div class="layui-card-header">固定话术</div>
+                      <div class="layui-card-body">
+                        1.xxxx
+                        <br>
+                        2.xxxx
+                        <br>
+                        3.xxxx
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
 
+        
             <!-- 给容器追加 class="layui-form-pane"，即可显示为方框风格 -->
-            <form class="layui-form layui-form-pane" action="">
+            <form class="layui-form layui-form-pane" action="" style="margin-top: 16px;">
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">选择区域</label>
@@ -122,6 +160,10 @@
                 <div class="layui-form-item">
                     <button class="layui-btn" lay-submit lay-filter="demo2">生成</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    <button type="button" class="layui-btn layui-bg-blue ">
+                        <a href="https://doc.topluck999.com/pages/viewpage.action?pageId=31409984" target="_blank" style="color: white;">发布流程文档</a>
+                        <i class="layui-icon layui-icon-list"></i>
+                    </button>
                 </div>
             </form>
 
