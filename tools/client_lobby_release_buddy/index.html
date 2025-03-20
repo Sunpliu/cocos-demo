@@ -32,46 +32,47 @@
                   <div class="layui-colla-title">版本号规范</div>
                   <div class="layui-colla-content">
                     <p>a.b.c.d[.e]</p>
-                    <p>大版本.迭代.变更.修复[.差异]</p>
+                    <p>大版本.迭代.变更（新增功能模块）.修复[.差异]</p>
                   </div>
                 </div>
                 <div class="layui-colla-item">
                   <div class="layui-colla-title">大致流程</div>
                   <div class="layui-colla-content">
-                    1 确认代码仓库已全部提交
-
-2 打Tags vx.x.x.x（basic launcher代码及皮肤 common代码及皮肤 hall代码及皮肤）<br>
-<br>
-3 在build-templates/version/lobby/lobby_version_xxx.json修改版本号<br>
-<br>
-4 在Lobby-client-build-publish-bot给机器人打包消息并确认<br>
-<br>
-5.prev 在Jenkins的ClientPublish执行对应模块脚本（如有新增皮肤需要新增参数）<br>
-<br>
-6.prod 在发布通知群提newdir工单
-在客户端总群告知子游戏打包
-等待测试信号
-在客户端总群告知子游戏准备覆盖
-回到发布通知群提cover工单
-<br>
-7 在backend后台修改对应模块版本（如有新增皮肤需要新增皮肤枚举）<br>
-<br>
-8.prev 如有不兼容更新需要在客户端总群通知子游戏打包<br>
-<br>
-9.prod 在客户端总群告知子游戏修改版本号<br>
-回到发布通知群告知测试版本号同步完成<br>
-<br>
-10.prev 在研发总群发布更新内容（如有新增皮肤需要通知产品新增渠道）<br>
-
+                        1 确认代码仓库已全部提交
+                        <br>
+                        2 打Tags vx.x.x.x（basic launcher代码及皮肤 common代码及皮肤 hall代码及皮肤）<br>
+                        <br>
+                        3 在build-templates/version/lobby/lobby_version_xxx.json修改版本号<br>
+                        <br>
+                        4 在Lobby-client-build-publish-bot给机器人打包消息并确认<br>
+                        <br>
+                        5.prev 在Jenkins的ClientPublish执行对应模块脚本（如有新增皮肤需要新增参数）<br>
+                        <br>
+                        6.prod 在发布通知群提newdir工单
+                        在客户端总群告知子游戏打包
+                        等待测试信号
+                        在客户端总群告知子游戏准备覆盖
+                        回到发布通知群提cover工单
+                        <br>
+                        7 在backend后台修改对应模块版本（如有新增皮肤需要新增皮肤枚举）<br>
+                        <br>
+                        8.prev 如有不兼容更新需要在客户端总群通知子游戏打包<br>
+                        <br>
+                        9.prod 在客户端总群告知子游戏修改版本号<br>
+                        回到发布通知群告知测试版本号同步完成<br>
+                        <br>
+                        10.prev 在研发总群发布更新内容（如有新增皮肤需要通知产品新增渠道）<br>
                   </div>
                 </div>
                 <div class="layui-colla-item">
                   <div class="layui-colla-title">固定话术</div>
                   <div class="layui-colla-content">
                     <ul>
-                      <li>@West996 XX 今天要上x.x版本，需要安排人更新</li>
-                      <li>@West996 XX lobby 准备覆盖了，相关配置准备好没，可以修改 XX 子游戏版本号</li>
-                      <li> @Platt0417 版本号同步完成</li>
+                        <li>首先：@子游戏负责人，明确子游戏是否需要更新</li>
+                        <li>@子游戏负责人 今天要上x.x版本，需要安排人更新</li>
+                        <li>@子游戏发版人员 大厅客户端更新✅，可以进行测试</li>
+                        <li>@子游戏发版人员 lobby 准备覆盖了，相关配置准备好没，可以修改 XX 子游戏版本号</li>
+                        <li>@相关测试人员 大厅、子游戏版本号同步✅</li>
                     </ul>
                   </div>
                 </div>
