@@ -14,8 +14,8 @@
             .centered-container {
                 min-height: 100vh;
                 padding-top: 20px;
-                padding-left: 15%;
-                padding-right: 15%;
+                padding-left: 20%;
+                padding-right: 20%;
                 box-sizing: border-box;
             }
         </style>
@@ -24,60 +24,9 @@
         <!-- 引入 layui.js -->
         <script src="https://cdn.jsdelivr.net/npm/layui@2.9.21/dist/layui.min.js"></script>
 
-        <div class="centered-container layui-bg-gray">
-            <blockquote class="layui-elem-quote">Lobby，发布流程，工单生成工具 </blockquote>
+        <div class="centered-container" style=" background-color: #e2e2e2; color: black;">
+            <blockquote class="layui-elem-quote">Lobby，工单生成工具 </blockquote>
 
-            <div class="layui-collapse">
-                <div class="layui-colla-item">
-                  <div class="layui-colla-title">版本号规范</div>
-                  <div class="layui-colla-content">
-                    <p>a.b.c.d[.e]</p>
-                    <p>大版本.迭代.变更（新增功能模块）.修复[.差异]</p>
-                  </div>
-                </div>
-                <div class="layui-colla-item">
-                  <div class="layui-colla-title">大致流程</div>
-                  <div class="layui-colla-content">
-                        1 确认代码仓库已全部提交
-                        <br>
-                        2 打Tags vx.x.x.x（basic launcher代码及皮肤 common代码及皮肤 hall代码及皮肤）<br>
-                        <br>
-                        3 在build-templates/version/lobby/lobby_version_xxx.json修改版本号<br>
-                        <br>
-                        4 在Lobby-client-build-publish-bot给机器人打包消息并确认<br>
-                        <br>
-                        5.prev 在Jenkins的ClientPublish执行对应模块脚本（如有新增皮肤需要新增参数）<br>
-                        <br>
-                        6.prod 在发布通知群提newdir工单
-                        在客户端总群告知子游戏打包
-                        等待测试信号
-                        在客户端总群告知子游戏准备覆盖
-                        回到发布通知群提cover工单
-                        <br>
-                        7 在backend后台修改对应模块版本（如有新增皮肤需要新增皮肤枚举）<br>
-                        <br>
-                        8.prev 如有不兼容更新需要在客户端总群通知子游戏打包<br>
-                        <br>
-                        9.prod 在客户端总群告知子游戏修改版本号<br>
-                        回到发布通知群告知测试版本号同步完成<br>
-                        <br>
-                        10.prev 在研发总群发布更新内容（如有新增皮肤需要通知产品新增渠道）<br>
-                  </div>
-                </div>
-                <div class="layui-colla-item">
-                  <div class="layui-colla-title">固定话术</div>
-                  <div class="layui-colla-content">
-                    <ul>
-                        <li>首先：@子游戏负责人，明确子游戏是否需要更新</li>
-                        <li>@子游戏负责人 今天要上x.x版本，需要安排人更新</li>
-                        <li>@子游戏发版人员 大厅客户端更新✅，可以进行测试</li>
-                        <li>@子游戏发版人员 lobby 准备覆盖了，相关配置准备好没，可以修改 XX 子游戏版本号</li>
-                        <li>@相关测试人员 大厅、子游戏版本号同步✅</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-        
             <!-- 给容器追加 class="layui-form-pane"，即可显示为方框风格 -->
             <form class="layui-form layui-form-pane" action="" style="margin-top: 16px;">
                 <div class="layui-form-item">
@@ -85,20 +34,7 @@
                         <label class="layui-form-label">选择区域</label>
                         <div class="layui-input-inline">
                             <select name="area" lay-filter="aihao">
-                                <option value="ID1" selected>id</option>
-                                <option value="ID2">id2</option>
-                                <option value="ID3">id3</option>
-                                <option value="ID4">id4</option>
-                                <option value="ID5">id5</option>
-                                <option value="ID6">id6</option>
-                                <option value="ID7">id7</option>
-                                <option value="ID8">id8</option>
-                                <option value="PH">ph</option>
-                                <option value="VN">vn</option>
-                                <option value="IN">in</option>
-                                <option value="PK">pk</option>
-                            </select>
-                        </div>
+                        </select>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">选择环境</label>
@@ -119,38 +55,26 @@
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择皮肤</label>
-                    <div class="layui-input-block">
-                        <input type="checkbox" value="1"name="bg" title="bg" checked />
-                        <input type="checkbox" value="1" name="ct" title="ct" checked />
-                        <input type="checkbox" value="1" name="ct2" title="ct2" checked />
-                        <input type="checkbox" value="1" name="ct3" title="ct3" checked />
-                        <input type="checkbox" value="1" name="ct4" title="ct4" checked />
-                        <input type="checkbox" value="1" name="cm1" title="cm1" checked />
-                        <input type="checkbox" value="1" name="cm2" title="cm2" checked />
-                        <input type="checkbox" value="1" name="cm3" title="cm3" checked />
-                        <input type="checkbox" value="1" name="cm4" title="cm4" checked />
-                        <input type="checkbox" value="1" name="cm5" title="cm5" checked />
-                        <input type="checkbox" value="1" name="cm6" title="cm6" checked />
-                    </div> 
+                    <div class="layui-input-block" id="skin-checkboxes"></div> 
                 </div>
 
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">Main</label>
                         <div class="layui-input-block">
-                            <input type="text" name="bundle-main-version" placeholder="输入版本号" autocomplete="off" class="layui-input" />
+                            <input type="text" name="bundle-main-version" placeholder="输入版本号: 1.1.1" autocomplete="off" class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">Common</label>
                         <div class="layui-input-block">
-                            <input type="text" name="bundle-common-version" placeholder="输入版本号" autocomplete="off" class="layui-input" />
+                            <input type="text" name="bundle-common-version" placeholder="输入版本号: 1.1.1" autocomplete="off" class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">Hall</label>
                         <div class="layui-input-block">
-                            <input type="text" name="bundle-hall-version" placeholder="输入版本号" autocomplete="off" class="layui-input" />
+                            <input type="text" name="bundle-hall-version" placeholder="输入版本号: 1.1.1" autocomplete="off" class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -161,7 +85,7 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">更新内容</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" name="desc" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入更新内容... ..." name="desc" class="layui-textarea"></textarea>
                     </div>
                 </div>
 
@@ -176,7 +100,6 @@
             </form>
 
             <!-- 输出内容 -->
-
             <div class="layui-bg-gray" id="copy_area">
                 <div class="layui-row layui-col-space15">
                     <div class="layui-col-md3">
@@ -207,7 +130,7 @@
 
                     <div class="layui-col-md3">
                         <div class="layui-card">
-                            <div class="layui-card-header">newdir 工单</div>
+                            <div class="layui-card-header">更新工单</div>
                             <div class="layui-card-body">
                                 <textarea placeholder="请输入内容" id="text-newdir" class="layui-textarea" style="height: 120px"></textarea>
 
@@ -220,136 +143,200 @@
 
                     <div class="layui-col-md3">
                         <div class="layui-card">
-                            <div class="layui-card-header">cover 工单</div>
+                            <div class="layui-card-header">覆盖工单</div>
                             <div class="layui-card-body">
                                 <textarea placeholder="请输入内容" id="text-cover"  class="layui-textarea" style="height: 120px"></textarea>
 
                                 <div class="layui-btn-container" style="margin-top: 10px;"> 
                                     <button type="button" class="layui-btn layui-btn-fluid" lay-on="copy-cover">复制</button>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
- 
         </div>
+    </body>
 
-        <!-- 脚本区域 -->
-        <script>
-            function getKeysWithValueOne(data) {
-                return Object.keys(data).filter(key => data[key] === "1");
+    <!-- 脚本区域 -->
+    <script>
+        // 获取 URL 参数的函数
+        function getUrlParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // 皮肤参数
+        let skins = getUrlParam('skin').split(',') || [];
+        if(skins.length === 0){
+                // 默认皮肤配置
+                skins = ['bg', 'ct', 'ct2', 'ct3', 'ct4', 'cm1', 'cm2', 'cm3', 'cm4', 'cm5', 'cm6'];
+        }
+
+        // 初始化皮肤选择器
+        function initSkinCheckboxes() {
+            const container = document.getElementById('skin-checkboxes');
+            skins.forEach(skin => {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = '1';
+                checkbox.name = skin;
+                checkbox.title = skin;
+                checkbox.checked = true;
+                container.appendChild(checkbox);
+            });
+        }
+
+        initSkinCheckboxes();
+
+        // 区域参数
+        let area = getUrlParam('country').split(',') || [];
+        if(area.length === 0){
+            area=['id', 'id1', 'id2', 'id3', 'id4', 'id5', 'id6', 'id7', 'id8'];
+        }
+
+        // 动态生成区域配置
+        const areaConfig =[];
+        for(let i = 0; i < area.length; i++){
+            if(i == 0){
+                areaConfig.push({ value: area[i], text: area[i], selected: true });
+            }else{
+                areaConfig.push({ value: area[i], text: area[i]});
             }
+        }
 
-            function isValidVersion(version) {
-                return /^[0-9.]+$/.test(version);
-            }
+        // 初始化区域选择器
+        function initAreaSelect() {
+            const select = document.querySelector('select[name="area"]');
+            areaConfig.forEach(area => {
+                const option = document.createElement('option');
+                option.value = area.value;
+                option.textContent = area.text;
+                if(area.selected) {
+                    option.selected = true;
+                }
+                select.appendChild(option);
+            });
+        }
 
-            document.getElementById("copy_area").style.display = "none";
+        initAreaSelect();
 
-            layui.use(['layer', 'form', 'laydate', 'util'], function () {
-                var form = layui.form;
-                var layer = layui.layer;
-                var laydate = layui.laydate;
-                var util = layui.util;
+        function getKeysWithValueOne(data) {
+            return Object.keys(data).filter(key => data[key] === "1");
+        }
 
-                // 日期
-                laydate.render({
-                    elem: '#date',
-                });
+        function isValidVersion(version) {
+            return /^[0-9.]+$/.test(version);
+        }
 
-                util.on('lay-on', {
-                    "copy-version-main": function(){
-                        const textarea = document.getElementById("text-version-main") 
-                        navigator.clipboard.writeText(textarea.value)
-                            .then(() => layer.msg('复制成功！'))
-                            .catch(err => layer.msg("复制失败: ", err));
+        document.getElementById("copy_area").style.display = "none";
 
-                    },
+        layui.use(['layer', 'form', 'laydate', 'util'], function () {
+            // 初始化区域选择器
+            initAreaSelect();
+            
+            var form = layui.form;
+            var layer = layui.layer;
+            var laydate = layui.laydate;
+            var util = layui.util;
 
-                    "copy-version-others": function(){
-                        const textarea = document.getElementById("text-version-others") 
-                        navigator.clipboard.writeText(textarea.value)
-                            .then(() => layer.msg('复制成功！'))
-                            .catch(err => layer.msg("复制失败: ", err));
+            // 日期
+            laydate.render({
+                elem: '#date',
+            });
 
-                    },
+            util.on('lay-on', {
+                "copy-version-main": function(){
+                    const textarea = document.getElementById("text-version-main") 
+                    navigator.clipboard.writeText(textarea.value)
+                        .then(() => layer.msg('复制成功！'))
+                        .catch(err => layer.msg("复制失败: ", err));
 
-                    "copy-newdir": function(){
-                        const textarea = document.getElementById("text-newdir") 
-                        navigator.clipboard.writeText(textarea.value)
-                            .then(() => layer.msg('复制成功！'))
-                            .catch(err => layer.msg("复制失败: ", err));
+                },
 
-                    },
+                "copy-version-others": function(){
+                    const textarea = document.getElementById("text-version-others") 
+                    navigator.clipboard.writeText(textarea.value)
+                        .then(() => layer.msg('复制成功！'))
+                        .catch(err => layer.msg("复制失败: ", err));
 
-                    "copy-cover": function(){
-                        const textarea = document.getElementById("text-cover") 
-                        navigator.clipboard.writeText(textarea.value)
-                            .then(() => layer.msg('复制成功！'))
-                            .catch(err => layer.msg("复制失败: ", err));
+                },
 
-                    },
-                })
+                "copy-newdir": function(){
+                    const textarea = document.getElementById("text-newdir") 
+                    navigator.clipboard.writeText(textarea.value)
+                        .then(() => layer.msg('复制成功！'))
+                        .catch(err => layer.msg("复制失败: ", err));
 
-                // 提交事件
-                form.on('submit(demo2)', function (data) {
-                    var field = data.field; // 获取表单字段值
-          
-                    var skins = getKeysWithValueOne(field);
+                },
 
-                    if(field['bundle-main-version']==='' && field['bundle-common-version']==='' && field['bundle-hall-version'] === ''){
-                        layer.msg('请填写至少一个版本号！！！')
-                        return false;
-                    }
+                "copy-cover": function(){
+                    const textarea = document.getElementById("text-cover") 
+                    navigator.clipboard.writeText(textarea.value)
+                        .then(() => layer.msg('复制成功！'))
+                        .catch(err => layer.msg("复制失败: ", err));
 
-                    if(skins.length === 0){
-                        layer.msg('请选择皮肤！！！')
-                        return false;
-                    }
+                },
+            })
 
-                    document.getElementById("copy_area").style.display ="block";
+            // 提交事件
+            form.on('submit(demo2)', function (data) {
+                var field = data.field; // 获取表单字段值
+        
+                var skins = getKeysWithValueOne(field);
 
-                    // main 版本号
-                    let version_main = ''
-                    if(field['bundle-main-version']){
-                        for(let i = 0; i < skins.length; i++){
-                            if(i == skins.length - 1){
-                                version_main += `main_${skins[i]}_${field['bundle-main-version']}.zip`
-                                break;
-                            }
-                            version_main += `main_${skins[i]}_${field['bundle-main-version']}.zip,`
+                if(field['bundle-main-version']==='' && field['bundle-common-version']==='' && field['bundle-hall-version'] === ''){
+                    layer.msg('请填写至少一个版本号！！！')
+                    return false;
+                }
+
+                if(skins.length === 0){
+                    layer.msg('请选择皮肤！！！')
+                    return false;
+                }
+
+                document.getElementById("copy_area").style.display ="block";
+
+                // main 版本号
+                let version_main = ''
+                if(field['bundle-main-version']){
+                    for(let i = 0; i < skins.length; i++){
+                        if(i == skins.length - 1){
+                            version_main += `main_${skins[i]}_${field['bundle-main-version']}.zip`
+                            break;
                         }
+                        version_main += `main_${skins[i]}_${field['bundle-main-version']}.zip,`
                     }
-                    document.getElementById("text-version-main").value = version_main;
+                }
+                document.getElementById("text-version-main").value = version_main;
 
-                    // others 版本号
-                    let version_others = ''
-                    if(field['bundle-common-version']){
-                        for(let i = 0; i < skins.length; i++){
-                            if(i == skins.length - 1){
-                                version_others += `common_${skins[i]}_${field['bundle-common-version']}.zip`
-                                break;
-                            }
-                            version_others += `common_${skins[i]}_${field['bundle-common-version']}.zip,`
+                // others 版本号
+                let version_others = ''
+                if(field['bundle-common-version']){
+                    for(let i = 0; i < skins.length; i++){
+                        if(i == skins.length - 1){
+                            version_others += `common_${skins[i]}_${field['bundle-common-version']}.zip`
+                            break;
                         }
+                        version_others += `common_${skins[i]}_${field['bundle-common-version']}.zip,`
                     }
-                    if(field['bundle-hall-version']){
-                        if(version_others!==''){
-                            version_others += ','
-                        }
-                        for(let i = 0; i < skins.length; i++){
-                            if(i == skins.length - 1){
-                                version_others += `hall_${skins[i]}_${field['bundle-hall-version']}.zip`
-                                break;
-                            }
-                            version_others += `hall_${skins[i]}_${field['bundle-hall-version']}.zip,`
-                        }
+                }
+                if(field['bundle-hall-version']){
+                    if(version_others!==''){
+                        version_others += ','
                     }
-                    document.getElementById("text-version-others").value = version_others;
+                    for(let i = 0; i < skins.length; i++){
+                        if(i == skins.length - 1){
+                            version_others += `hall_${skins[i]}_${field['bundle-hall-version']}.zip`
+                            break;
+                        }
+                        version_others += `hall_${skins[i]}_${field['bundle-hall-version']}.zip,`
+                    }
+                }
+                document.getElementById("text-version-others").value = version_others;
 
-                    let version_main_2 = version_main.replace(/,/g, '\n')
-                    let version_others_2 = version_others.replace(/,/g, '\n')
+                let version_main_2 = version_main.replace(/,/g, '\n')
+                let version_others_2 = version_others.replace(/,/g, '\n')
 
 // newdir 工单
 let newdir = `【客户端大厅更新工单】
@@ -358,7 +345,7 @@ let newdir = `【客户端大厅更新工单】
 `;
 
 if(field['bundle-main-version']){
-    newdir +=`
+newdir +=`
 服务：hall_h5_main_newdir
 日期：${field['date']}
 文件：
@@ -367,7 +354,7 @@ ${version_main_2}
 }
 
 if(field['bundle-common-version'] || field['bundle-hall-version']){
-    newdir += `
+newdir += `
 服务：hall_h5_other
 日期：${field['date']}
 文件：
@@ -376,7 +363,7 @@ ${version_others_2}
 }
 
 if(field['bundle-main-version']){
-     newdir += `
+    newdir += `
 服务：hall_native_main
 日期：${field['date']}
 文件：
@@ -385,7 +372,7 @@ ${version_main_2}
 }
 
 if(field['bundle-common-version'] || field['bundle-hall-version']){
-    newdir += `
+newdir += `
 服务：hall_native_other
 日期：${field['date']}
 文件：
@@ -394,19 +381,19 @@ ${version_others_2}
 }
 
 if(field['desc']){
-    newdir += `
+newdir += `
 更新内容：
 ${field['desc']}
 `
 }
 newdir += `
 @Platt0417 @Lavy_2r8`
-                    document.getElementById("text-newdir").value = newdir;
+                document.getElementById("text-newdir").value = newdir;
 
-                    // cover 工单
-                    let cover = '';
-                    if(field['bundle-main-version']){
-                        cover = `【客户端大厅更新工单】 
+                // cover 工单
+                let cover = '';
+                if(field['bundle-main-version']){
+                    cover = `【客户端大厅更新工单】 
 区域：${field['area']}
 环境：${field['evn']}
 服务：hall_h5_main_cover 
@@ -416,17 +403,16 @@ newdir += `
 ${version_main_2}
 
 @Lavy_2r8 @Platt0417`
-                    }
+                }
 
-                    document.getElementById("text-cover").value = cover;
+                document.getElementById("text-cover").value = cover;
 
-                    layer.msg('生成成功！')
+                layer.msg('生成成功！')
 
-                    // 此处可执行 Ajax 等操作
-                    // …
-                    return false; // 阻止默认 form 跳转
-                });
+                // 此处可执行 Ajax 等操作
+                // …
+                return false; // 阻止默认 form 跳转
             });
-        </script>
-    </body>
+        });
+    </script>
 </html>
