@@ -186,6 +186,9 @@
             area = ['id', 'id1', 'id2', 'id3', 'id4', 'id5', 'id6', 'id7', 'id8'];
         }
 
+        skins = skins.sort();
+        area = area.sort();
+
         // 清理 URL 参数
         if (window.history && window.history.replaceState) {
             const cleanUrl = window.location.href.split('?')[0];
