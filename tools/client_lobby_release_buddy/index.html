@@ -163,27 +163,33 @@
         // 获取 URL 参数的函数
         function getUrlParam(name) {
             const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
+            return urlParams.get(name) || null;
         }
 
         // 皮肤参数
-        let skins = getUrlParam('skin').split(',') || [];
+        let skins = [];
+        if( getUrlParam('skin')){
+            skins = getUrlParam('skin').split(',')
+        }
 
         // 区域参数
-        let area = getUrlParam('country').split(',') || [];
+        let area = [];
+        if(getUrlParam('country')){
+            area = getUrlParam('country').split(',')
+        }
+
+        if(skins.length === 0){
+            // 默认皮肤配置
+            skins = ['bg', 'ct', 'ct2', 'ct3', 'ct4', 'cm1', 'cm2', 'cm3', 'cm4', 'cm5', 'cm6'];
+        }
+        if(area.length === 0){
+            area = ['id', 'id1', 'id2', 'id3', 'id4', 'id5', 'id6', 'id7', 'id8'];
+        }
 
         // 清理 URL 参数
         if (window.history && window.history.replaceState) {
             const cleanUrl = window.location.href.split('?')[0];
             window.history.replaceState({}, document.title, cleanUrl);
-        }
-
-        if(skins.length === 0){
-                // 默认皮肤配置
-                skins = ['bg', 'ct', 'ct2', 'ct3', 'ct4', 'cm1', 'cm2', 'cm3', 'cm4', 'cm5', 'cm6'];
-        }
-        if(area.length === 0){
-            area=['id', 'id1', 'id2', 'id3', 'id4', 'id5', 'id6', 'id7', 'id8'];
         }
 
         // 初始化皮肤选择器
