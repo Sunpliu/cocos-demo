@@ -180,14 +180,17 @@
 
         if(skins.length === 0){
             // 默认皮肤配置
-            skins = ['bg', 'ct', 'ct2', 'ct3', 'ct4', 'cm1', 'cm2', 'cm3', 'cm4', 'cm5', 'cm6'];
+            skins = ['bg', 'ct', 'ct2', 'ct3', 'ct4', 'cm1', 'cm2', 'cm3', 'cm4', 'cm5', 'cm6', 'as'];
         }
         if(area.length === 0){
-            area = ['id', 'id1', 'id2', 'id3', 'id4', 'id5', 'id6', 'id7', 'id8'];
+            area = ['id', 'id1', 'id2', 'id3', 'id4', 'id5', 'id6', 'id7', 'id8','ph','pk','mx','th','br','in','vn','pk'];
         }
 
         skins = skins.sort();
         area = area.sort();
+
+        skins = skins.map(str => str.toLowerCase());
+        area = area.map(str => str.toUpperCase());
 
         // 清理 URL 参数
         if (window.history && window.history.replaceState) {
