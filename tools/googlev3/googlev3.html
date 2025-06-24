@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>reCAPTCHA V3</title>
+    </head>
+    <body>
+        <script>
+            // 获取 URL 参数的函数
+            function getUrlParam(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name) || null;
+            }
+
+            // 动态加载reCAPTCHA脚本
+            function loadRecaptchaScript() {
+                const siteKey = getUrlParam('siteKey');
+                if (!siteKey) {
+                    return;
+                }
+                const script = document.createElement('script');
+                script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+                script.async = true;
+                document.head.appendChild(script);
+            }
+
+            // 页面加载时动态加载脚本
+            loadRecaptchaScript();
+        </script>
+    </body>
+</html>
