@@ -94,7 +94,7 @@
 
     <!-- 脚本区域 -->
     <script>
-        let area = ['feat: 新增功能 😊', 'fix: 修复补丁 🔥', 'perf: 性能优化 💊', 'docs: 修订文档 📖', 'refactor: 代码重构 🌞', 'style: 代码格式 🎩', 'test: 添加测试 🤌', 'merge: 合并分支 🔗', 'tool: 工具相关 🔧', 'revert: 回退版本 👈'];
+        let area = ['feat: 新增功能 😊', 'fix: 修复补丁 🔥', 'skin: 新增皮肤 👔', 'perf: 性能优化 💊', 'docs: 修订文档 📖', 'refactor: 代码重构 🌞', 'style: 代码格式 🎩', 'test: 添加测试 🤌', 'merge: 合并分支 🔗', 'tool: 工具相关 🔧', 'revert: 回退版本 👈'];
 
         // 动态生成区域配置
         const areaConfig = [];
@@ -155,7 +155,6 @@
                 let affect_range = field['affect_range'].trim();
                 let test_suggest = field['test_suggest'].trim();
                 let adapt_version = field['adapt_version'].trim();
-                let extra_desc = field['extra_desc'].trim();
 
                 var desc = (commit_type = commit_type.split(':')[0] + ': ' + commit_desc) + '\n';
 
@@ -176,10 +175,6 @@
 
                 if (test_suggest.length > 0) {
                     desc += '\n' + '测试建议：' + test_suggest;
-                }
-
-                if (extra_desc.length > 0) {
-                    desc += '\n' + '补充说明：' + extra_desc;
                 }
 
                 if (adapt_version.length > 0) {
