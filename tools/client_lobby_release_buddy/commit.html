@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 引入 favicon.ico -->
+        <link rel="icon" href="./res/favicon.ico" />
+        <!-- 标题 -->
+        <title>Git commit message</title>
+        <!-- 引入 layui.css -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui@2.9.21/dist/css/layui.min.css" />
+
+        <style>
+            .centered-container {
+                min-height: 100vh;
+                padding-top: 20px;
+                padding-left: 20%;
+                padding-right: 20%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body class="layui-bg-gray">
+        <!-- 引入 layui.js -->
+        <script src="https://cdn.jsdelivr.net/npm/layui@2.9.21/dist/layui.min.js"></script>
+
+        <div class="centered-container" style="background-color: #e2e2e2; color: black">
+            <blockquote class="layui-elem-quote"><i class="layui-icon layui-icon-github" style="color: #1e9fff"></i>&nbsp;&nbsp;Git commit message 生成工具</blockquote>
+
+            <!-- 给容器追加 class="layui-form-pane"，即可显示为方框风格 -->
+            <form class="layui-form layui-form-pane" action="" style="margin-top: 16px">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">标签</label>
+                    <div class="layui-input-block">
+                        <select name="area" lay-filter="aihao"></select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提交描述</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="commit_desc" autocomplete="off" lay-verify="required" placeholder="本次提交的大致内容，尽可能简单，易懂" class="layui-input" />
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">关联禅道</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="zentao_id" autocomplete="off" placeholder="任务：t-xxxxx；bug: b-xxxxx；没有则不填写" class="layui-input" />
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">影响范围</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="affect_range" autocomplete="off" class="layui-input" />
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">测试建议</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="test_suggest" autocomplete="off" class="layui-input" />
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">补充说明</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="extra_desc" autocomplete="off" class="layui-input" />
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">适配版本</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="adapt_version" autocomplete="off" lay-verify="required" class="layui-input" />
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <button class="layui-btn" lay-submit lay-filter="demo2">生成</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </form>
+
+            <!-- 输出内容 -->
+            <div class="layui-bg-gray" id="copy_area" , style="margin-top: 12px; padding: 12px">
+                <div class="layui-card">
+                    <div class="layui-card-header">main 版本号</div>
+                    <div class="layui-card-body">
+                        <textarea placeholder="请输入内容" id="text-version-main" class="layui-textarea" style="height: 240px"></textarea>
+                        <div class="layui-btn-container" style="margin-top: 10px">
+                            <button type="button" class="layui-btn layui-btn-fluid" lay-on="copy-version-main">复制</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <!-- 脚本区域 -->
+    <script>
+        let area = ['feat: 新增功能 😊', 'fix: 修复补丁 🔥', 'perf: 性能优化 💊', 'docs: 修订文档 📖', 'refactor: 代码重构 🌞', 'style: 代码格式 🎩', 'test: 添加测试 🤌', 'merge: 合并分支 🔗', 'tool: 工具相关 🔧', 'revert: 回退版本 👈'];
+
+        // 动态生成区域配置
+        const areaConfig = [];
+        for (let i = 0; i < area.length; i++) {
+            if (i == 0) {
+                areaConfig.push({ value: area[i], text: area[i], selected: true });
+            } else {
+                areaConfig.push({ value: area[i], text: area[i] });
+            }
+        }
+
+        // 初始化区域选择器
+        function initAreaSelect() {
+            const select = document.querySelector('select[name="area"]');
+            areaConfig.forEach((area) => {
+                const option = document.createElement('option');
+                option.value = area.value;
+                option.textContent = area.text;
+                if (area.selected) {
+                    option.selected = true;
+                }
+                select.appendChild(option);
+            });
+        }
+
+        initAreaSelect();
+
+        // 浏览器换成读取 adapt_version 的值，复制
+        const adapt_version = localStorage.getItem('adapt_version');
+        if (adapt_version) {
+            document.querySelector('input[name="adapt_version"]').value = adapt_version;
+        }
+
+        layui.use(['layer', 'form', 'laydate', 'util'], function () {
+            // 初始化区域选择器
+            var form = layui.form;
+            var layer = layui.layer;
+            var laydate = layui.laydate;
+            var util = layui.util;
+
+            util.on('lay-on', {
+                'copy-version-main': function () {
+                    const textarea = document.getElementById('text-version-main');
+                    navigator.clipboard
+                        .writeText(textarea.value)
+                        .then(() => layer.msg('复制成功！'))
+                        .catch((err) => layer.msg('复制失败: ', err));
+                },
+            });
+
+            // 提交事件
+            form.on('submit(demo2)', function (data) {
+                // 获取表单字段值
+                var field = data.field;
+                let commit_type = field['area'];
+                let zentao_id = field['zentao_id'].trim();
+                let commit_desc = field['commit_desc'].trim();
+                let affect_range = field['affect_range'].trim();
+                let test_suggest = field['test_suggest'].trim();
+                let adapt_version = field['adapt_version'].trim();
+                let extra_desc = field['extra_desc'].trim();
+
+                var desc = (commit_type = commit_type.split(':')[0] + ': ' + commit_desc) + '\n';
+
+                if (zentao_id.length > 0) {
+                    // 正则匹配 t- + 数字 ｜ b- + 数字
+                    const reg = /^[tTbB]-[0-9]+$/;
+                    if (reg.test(zentao_id)) {
+                        desc += '\n' + '关联禅道：' + zentao_id;
+                    } else {
+                        layer.msg('禅道 id 格式错误，请检查！！！');
+                        return false;
+                    }
+                }
+
+                if (affect_range.length > 0) {
+                    desc += '\n' + '影响范围：' + affect_range;
+                }
+
+                if (test_suggest.length > 0) {
+                    desc += '\n' + '测试建议：' + test_suggest;
+                }
+
+                if (extra_desc.length > 0) {
+                    desc += '\n' + '补充说明：' + extra_desc;
+                }
+
+                if (adapt_version.length > 0) {
+                    desc += '\n' + '适配版本：>= ' + adapt_version;
+                }
+
+                // 浏览器记录 adapt_version 的值
+                localStorage.setItem('adapt_version', adapt_version);
+
+                // main 版本号
+                document.getElementById('text-version-main').value = desc;
+
+                layer.msg('生成成功！');
+                return false;
+            });
+        });
+    </script>
+</html>

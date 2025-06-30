@@ -34,6 +34,7 @@
         "**/local": true
     },
     "cSpell.words": [
-        "layui"
+        "layui",
+        "zentao"
     ],
 }
