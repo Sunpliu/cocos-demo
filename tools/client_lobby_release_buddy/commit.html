@@ -37,16 +37,16 @@
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">提交描述</label>
+                    <label class="layui-form-label">描述</label>
                     <div class="layui-input-block">
-                        <input type="text" name="commit_desc" autocomplete="off" lay-verify="required" placeholder="本次提交的大致内容，尽可能简单，易懂" class="layui-input" />
+                        <input type="text" name="commit_desc" autocomplete="off" lay-verify="required" placeholder="简单，易懂" class="layui-input" />
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">关联禅道</label>
                     <div class="layui-input-block">
-                        <input type="text" name="zentao_id" autocomplete="off" placeholder="任务：t-xxxxx；bug: b-xxxxx；没有则不填写" class="layui-input" />
+                        <input type="text" name="zentao_id" autocomplete="off" placeholder="任务: t-xxxxx  bug: b-xxxxx  无则不填" class="layui-input" />
                     </div>
                 </div>
 
@@ -175,10 +175,16 @@
                     desc += '\n' + '适配版本：>= ' + adapt_version;
                 }
 
-                // main 版本号
-                document.getElementById('text-version-main').value = desc.trim();
+                desc = desc.trim();
 
-                layer.msg('生成成功！');
+                // main 版本号
+                document.getElementById('text-version-main').value = desc;
+
+                navigator.clipboard
+                    .writeText(desc)
+                    .then(() => layer.msg('复制成功！'))
+                    .catch((err) => layer.msg('复制失败: ', err));
+
                 return false;
             });
         });
