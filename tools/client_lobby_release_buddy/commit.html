@@ -122,12 +122,6 @@
 
         initAreaSelect();
 
-        // 浏览器换成读取 adapt_version 的值，复制
-        const adapt_version = localStorage.getItem('adapt_version');
-        if (adapt_version) {
-            document.querySelector('input[name="adapt_version"]').value = adapt_version;
-        }
-
         layui.use(['layer', 'form', 'laydate', 'util'], function () {
             // 初始化区域选择器
             var form = layui.form;
@@ -180,9 +174,6 @@
                 if (adapt_version.length > 0) {
                     desc += '\n' + '适配版本：>= ' + adapt_version;
                 }
-
-                // 浏览器记录 adapt_version 的值
-                localStorage.setItem('adapt_version', adapt_version);
 
                 // main 版本号
                 document.getElementById('text-version-main').value = desc;
