@@ -175,13 +175,97 @@ const bookmarks = [
         url: 'https://h5.idn2-test.com/ct/?log=1',
         description: 'ID2 prev h5\n提示内容-----\n提示内容-----',
     },
+    {
+        id: 24,
+        title: 'ID1 prev',
+        tags: ['id1', 'prev'],
+        url: 'https://h5.idn-test.com/ct/?log=1',
+        description: 'ID1 prev h5',
+    },
+    {
+        id: 25,
+        title: 'ID2 prev',
+        tags: ['id2', 'prev'],
+        url: 'https://h5.idn2-test.com/ct/?log=1',
+        description: 'ID2 prev h5\n提示内容-----\n提示内容-----',
+    },
+    {
+        id: 24,
+        title: 'ID1 prev',
+        tags: ['id1', 'prev'],
+        url: 'https://h5.idn-test.com/ct/?log=1',
+        description: 'ID1 prev h5',
+    },
+    {
+        id: 25,
+        title: 'ID2 prev',
+        tags: ['id2', 'prev'],
+        url: 'https://h5.idn2-test.com/ct/?log=1',
+        description: 'ID2 prev h5\n提示内容-----\n提示内容-----',
+    },
+    {
+        id: 24,
+        title: 'ID1 prev',
+        tags: ['id1', 'prev'],
+        url: 'https://h5.idn-test.com/ct/?log=1',
+        description: 'ID1 prev h5',
+    },
+    {
+        id: 25,
+        title: 'ID2 prev',
+        tags: ['id2', 'prev'],
+        url: 'https://h5.idn2-test.com/ct/?log=1',
+        description: 'ID2 prev h5\n提示内容-----\n提示内容-----',
+    },
+    {
+        id: 24,
+        title: 'ID1 prev',
+        tags: ['id1', 'prev'],
+        url: 'https://h5.idn-test.com/ct/?log=1',
+        description: 'ID1 prev h5',
+    },
+    {
+        id: 25,
+        title: 'ID2 prev',
+        tags: ['id2', 'prev'],
+        url: 'https://h5.idn2-test.com/ct/?log=1',
+        description: 'ID2 prev h5\n提示内容-----\n提示内容-----',
+    },
+    {
+        id: 24,
+        title: 'ID1 prev',
+        tags: ['id1', 'prev'],
+        url: 'https://h5.idn-test.com/ct/?log=1',
+        description: 'ID1 prev h5',
+    },
+    {
+        id: 25,
+        title: 'ID2 prev',
+        tags: ['id2', 'prev'],
+        url: 'https://h5.idn2-test.com/ct/?log=1',
+        description: 'ID2 prev h5\n提示内容-----\n提示内容-----',
+    },
+    {
+        id: 24,
+        title: 'ID1 prev',
+        tags: ['id1', 'prev'],
+        url: 'https://h5.idn-test.com/ct/?log=1',
+        description: 'ID1 prev h5',
+    },
+    {
+        id: 25,
+        title: 'ID2 prev',
+        tags: ['id2', 'prev'],
+        url: 'https://h5.idn2-test.com/ct/?log=1',
+        description: 'ID2 prev h5\n提示内容-----\n提示内容-----',
+    },
 ];
 
 class BookmarkSearchEngine {
     constructor(bookmarks) {
         this.bookmarks = bookmarks;
         this.selectedIndex = -1;
-        this.maxDisplayItems = 24; // 最多显示 20 条数据
+        this.maxDisplayItems = 30; // 最多显示 20 条数据
     }
 
     // 搜索书签
@@ -334,7 +418,7 @@ function renderVisibleItems() {
             return `
                 <div class="search-item" data-index="${actualIndex}">
                     <div class="item-content" onclick="openBookmark('${item.url}')" style="cursor: pointer;">
-                        <div class="item-title">${item.highlights.title}</div>
+                        <div class="item-title">${index} ${item.highlights.title}</div>
                         <div class="item-tags">
                             ${tagsHtml}
                         </div>
