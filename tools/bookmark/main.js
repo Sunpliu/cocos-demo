@@ -265,7 +265,7 @@ class BookmarkSearchEngine {
     constructor(bookmarks) {
         this.bookmarks = bookmarks;
         this.selectedIndex = -1;
-        this.maxDisplayItems = 30; // 最多显示 20 条数据
+        this.maxDisplayItems = 50; // 最多显示 50 条数据
     }
 
     // 搜索书签
@@ -310,10 +310,10 @@ class BookmarkSearchEngine {
         let totalScore = 0;
 
         keywords.forEach((keyword) => {
-            // 标签完美匹配 (权重: 200)
+            // 标签完美匹配 (权重: 300)
             const perfectTagMatch = bookmark.tags.some((tag) => tag.toLowerCase() === keyword);
             if (perfectTagMatch) {
-                totalScore += 200;
+                totalScore += 300;
             } else {
                 // 标签部分匹配 (权重: 50)
                 const tagMatches = bookmark.tags.filter((tag) => tag.toLowerCase().includes(keyword)).length;
@@ -418,7 +418,7 @@ function renderVisibleItems() {
             return `
                 <div class="search-item" data-index="${actualIndex}">
                     <div class="item-content" onclick="openBookmark('${item.url}')" style="cursor: pointer;">
-                        <div class="item-title">${index} ${item.highlights.title}</div>
+                        <div class="item-title">${item.highlights.title}</div>
                         <div class="item-tags">
                             ${tagsHtml}
                         </div>
@@ -718,7 +718,7 @@ function closeDeleteModal() {
 // 确认删除
 function confirmDelete() {
     const password = document.getElementById('deletePassword').value;
-    if (password !== '123456') {
+    if (password !== '0123') {
         showCustomAlert('删除口令错误！', 'error');
         return;
     }
