@@ -3,19 +3,24 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>关键词书签</title>
+        <title>书签管理</title>
+        <!-- 引入 layui.css -->
+        <link rel="stylesheet" href="../../layui/css/layui.css" />
+        <!-- 引入 layui.js -->
+        <script src="../../layui/layui.js"></script>
+        <!-- 引入公共工具 -->
         <link rel="stylesheet" href="style.css" />
+        <script src="../../common/api-config.js"></script>
+        <script src="../../common/auth-utils.js"></script>
     </head>
     <body>
         <!-- 核心页面 -->
         <div class="search-container">
-            <!-- 标题 -->
             <div class="page-title">关键词书签</div>
-            <!-- 标题 -->
-
             <div class="search-header">
                 <input type="text" class="search-input" placeholder="搜索书签... (支持多关键词搜索，关键词之间用 空格 分开)" id="searchInput" autocomplete="off" maxlength="24" />
                 <button type="button" class="add-btn" id="addBtn">新增</button>
+                <button type="button" class="logout-btn" id="logoutBtn">登出</button>
             </div>
             <div class="search-stats" id="searchStats">共 10 个结果</div>
             <div class="search-results" id="searchResults">
@@ -30,7 +35,7 @@
                 <div class="modal-header">确认删除</div>
                 <div class="modal-text">确定要删除这个书签吗？此操作不可撤销。</div>
                 <div class="form-group">
-                    <label class="form-label">请输入删除口令：</label>
+                    <label class="form-label">请输入删除口令：123456</label>
                     <input type="password" id="deletePassword" class="form-input" placeholder="请输入口令" />
                 </div>
                 <div class="modal-actions">
@@ -45,20 +50,27 @@
         <div id="editModal" class="modal">
             <div class="modal-content edit-modal-content">
                 <div class="modal-header">编辑书签</div>
+                <div id="bookmarkTypeSelection" class="form-group">
+                    <label class="form-label">书签类型：</label>
+                    <select id="bookmarkType" class="form-input">
+                        <option value="2">个人书签</option>
+                        <option value="1">公共书签</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label class="form-label">标题（最多 24 个字符）：</label>
                     <input type="text" id="editTitle" class="form-input" placeholder="请输入书签标题" maxlength="24" />
                 </div>
                 <div class="form-group">
-                    <label class="form-label">网址（最多 72 个字符）：</label>
-                    <input type="url" id="editUrl" class="form-input" placeholder="请输入网址" maxlength="72" />
+                    <label class="form-label">网址（最多 120 个字符）：</label>
+                    <input type="url" id="editUrl" class="form-input" placeholder="请输入网址" maxlength="120" />
                 </div>
                 <div class="form-group">
                     <label class="form-label">描述（最多 360 个字符）：</label>
                     <textarea id="editDescription" class="form-input form-textarea" placeholder="请输入描述" rows="4" maxlength="360"></textarea>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">标签（用英文逗号分隔，最多 36 个字符）：</label>
+                    <label class="form-label">标签（用英文逗号｜中文逗号｜空格分隔，最多 36 个字符）：</label>
                     <input type="text" id="editTags" class="form-input" placeholder="例如：前端,Vue,文档" maxlength="36" />
                 </div>
                 <div class="modal-actions">
@@ -68,18 +80,6 @@
             </div>
         </div>
         <!-- 编辑书签弹窗 -->
-
-        <!-- 自定义Alert弹窗 -->
-        <div id="customAlert" class="modal">
-            <div class="modal-content alert-modal-content">
-                <div class="alert-icon" id="alertIcon">ℹ️</div>
-                <div class="alert-message" id="alertMessage">这是一条提示信息</div>
-                <div class="modal-actions">
-                    <button type="button" class="modal-btn btn-primary" onclick="closeCustomAlert()">确定</button>
-                </div>
-            </div>
-        </div>
-        <!-- 自定义Alert弹窗 -->
 
         <script src="main.js"></script>
     </body>
