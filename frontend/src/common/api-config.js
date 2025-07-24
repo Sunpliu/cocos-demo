@@ -6,7 +6,7 @@
 // 基础 URL 配置
 const API_CONFIG = {
     // 基础 URL
-    BASE_URL: 'https://8.209.247.215:3000/api',
+    BASE_URL: 'http://8.209.247.215:3000/api',
 
     // 用户相关接口
     USER: {
